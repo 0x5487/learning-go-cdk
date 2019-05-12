@@ -1,0 +1,15 @@
+.DS_Store
+*.log
+configs/local.json
+vendor/**/
+public/*.html
+dist/*
+.idea
+/mysql
+logs/
+.vscode/
+main
+/run.bat
+/local.json
+.coverage.txt
+/rabbitmq
