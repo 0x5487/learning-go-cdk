@@ -8,6 +8,9 @@ import (
 	"github.com/jasonsoft/log/handlers/console"	
 	"gocloud.dev/pubsub"
 	_ "gocloud.dev/pubsub/rabbitpubsub"
+	// "github.com/streadway/amqp"
+	// "gocloud.dev/pubsub/rabbitpubsub"
+	// "os"
 )
 
 var topicURL = "rabbit://topicA"
@@ -74,8 +77,13 @@ func writeLoop(ctx context.Context, topic *pubsub.Topic) {
 		})
 		if err != nil {
 			log.Errorf("main: send topic err: %v", err)
-			break
+			if err != nil {
+				log.Errorf("open connection failed %v", err)
+			 	continue
+			}
+			continue
 		}
+		log.Infof("main: send message: %s\n",  msg)
 		i++
 		time.Sleep(2 * time.Second)
 	}
